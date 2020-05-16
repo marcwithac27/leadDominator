@@ -20,7 +20,7 @@ const TableBody = ({leads, columns}) => {
                 return <tr>
                     {
                         row.map(data => {
-                            return <td>{data}</td>
+                            return <td>{JSON.stringify(data)}</td>
                         })
                     }
                 </tr>
