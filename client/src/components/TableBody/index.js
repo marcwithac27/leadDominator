@@ -1,45 +1,41 @@
-import React, { useEffect, useState } from "react";
-import TableRow from "../TableRow";
-import { Link } from "react-router-dom";
-import API from "../../utils/API"
-const leads = [{}];
-const columns = Object.keys(leads[0])
-let rows = []
-leads.forEach(lead => {
-    rows = columns.map(column => {
-        return lead[column]
+import React from "react";
+
+
+
+const TableBody = ({leads, columns}) => {
+    console.log('columns', columns)
+    let rows = [];
+    leads.forEach(lead => {
+        const row = [];
+        columns.forEach(column => {
+            console.log('lead[column]', lead[column])
+            row.push(lead[column])
+        })
+        rows.push(row)
     })
-})
-
-const TableBody = () => {
-    const [leads, setLeads] = useState([])
-
-    useEffect(() => {
-        loadLeads()
-    }, [])
-
-    const loadLeads = () => {
-        API.getLeads()
-        .then(res => 
-           console.log(res.data)
-            //setLeads(res.data),
-            
-        )
-        .catch(err => console.log(err));
-    }
-
+    console.log(rows)
     return (
-        
-        
     <tbody>
         {
+            rows.map(row => {
+                return <tr>
+                    {
+                        row.map(data => {
+                            return <td>{data}</td>
+                        })
+                    }
+                </tr>
+            })
+        }
+    
+        {/*
             
                 <TableRow key= {leads._id} rows= {rows}>
                     <Link to={"/leads/" + leads._id}/>
 
                 </TableRow>
             
-        }
+        */}
     </tbody>
     )
 }

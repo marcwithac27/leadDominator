@@ -1,30 +1,38 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
 import PO from "../Popover"
+import API from "../../utils/API"
 
 import {FormControl, InputGroup, Table, Container} from "react-bootstrap"
 
 
 
 const ListView = () => {
-    const [leads, setLeads] = useState([
-        {
-            disposition: "NA",
-            attempts: 2,
-            firstName: 'marc',
-            lastName: 'banana',
-            email: "someemail@emial.com",
-            resortName: "Westgate",
-            homePhone: "3217689889",
-            altNumber: "4078976755",
-            address: "adefafea",
-            city: "aefwafea",
-            state: "afewaefee",
-            zip: "afewaf",
-        }
-    ])
-    const columns = Object.keys(leads[0]);
+  const [leads, setLeads] = useState([])
+  const [columns, setColumns] = useState([])
+    // const [leads, setLeads] = useState([
+        // {
+        //     disposition: "NA",
+        //     attempts: 2,
+        //     firstName: 'marc',
+        //     lastName: 'banana',
+        //     email: "someemail@emial.com",
+        //     resortName: "Westgate",
+        //     homePhone: "3217689889",
+        //     altNumber: "4078976755",
+        //     address: "adefafea",
+        //     city: "aefwafea",
+        //     state: "afewaefee",
+        //     zip: "afewaf",
+        // }
+    // ])
+  //   const columns = () => {
+  //     if (leads[0]) {
+  //         return Object.keys(leads[0])
+  //     }
+  //     return []
+  // }
 
     //const [sortKey, setSortKey] = useState('')
 
@@ -35,6 +43,21 @@ const ListView = () => {
         setLeads(sortedArray)
     }
     
+
+    useEffect(() => {
+        loadLeads()
+    }, [])
+
+    const loadLeads = () => {
+        API.getLeads()
+        .then(res => {
+           console.log("res.data",Array.isArray(res.data))
+            setLeads(res.data)
+            setColumns(Object.keys(res.data[0]))
+        }
+        )
+        .catch(err => console.log(err));
+    }
     return(
         
         
@@ -57,7 +80,8 @@ const ListView = () => {
             
             />
            
-            <TableBody/>
+            <TableBody leads={leads}
+            columns={columns}/>
             </Table>
            
             <PO/>
