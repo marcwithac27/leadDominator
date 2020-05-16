@@ -1,7 +1,6 @@
 import React from "react";
 
 
-
 const TableBody = ({leads, columns}) => {
     console.log('columns', columns)
     let rows = [];
@@ -27,15 +26,6 @@ const TableBody = ({leads, columns}) => {
                 </tr>
             })
         }
-    
-        {/*
-            
-                <TableRow key= {leads._id} rows= {rows}>
-                    <Link to={"/leads/" + leads._id}/>
-
-                </TableRow>
-            
-        */}
     </tbody>
     )
 }

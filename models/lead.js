@@ -2,15 +2,16 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const leadSchema = new Schema({
-    disposition: {
+    disposition: [{
         type: Schema.Types.ObjectId,
         ref: "Disposition",
         default: null
-    },
+    }],
     assignedTo: {
         type: Schema.Types.ObjectId,
         ref: "User"
     },
+    attempts: Number,
     firstname: String,
     lastName: {type:String, required: true},
     resortName: String,

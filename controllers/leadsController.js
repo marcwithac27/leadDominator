@@ -7,15 +7,28 @@ module.exports = {
       .find(req.query)
       .populate("disposition")
       .sort({ date: -1 })
-      .then((data) => {
-        Disposition.countDocuments({lead: data._id})
-        .then((count) => {
-          res.send([
-            ...data,
-            // count
-          ])
+      .then(leads => {
+        const dataToSend = leads.map(leads.map(lead => {
+          return {
+            ...lead,
+            disposition: lead.disposition[0],
+            attempts: lead.disposition.length
+          }
+        
         })
+        .then(()=> {
+          res.send(dataToSend)
+        })
+        )
       })
+      // .then((data) => {
+      //   Disposition.countDocuments({lead: data._id})
+      //   .then(() => {
+      //     res.send([
+      //       ...data,
+      //     ])
+      //   })
+      // })
       .catch(err => next(err));
   },
   createDispo: function (req,req){
