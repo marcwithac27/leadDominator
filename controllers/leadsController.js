@@ -8,18 +8,14 @@ module.exports = {
       .populate("disposition")
       .sort({ date: -1 })
       .then(leads => {
-        const dataToSend = leads.map(leads.map(lead => {
+        const dataToSend = leads.map(lead => {
           return {
             ...lead,
             disposition: lead.disposition[0],
             attempts: lead.disposition.length
           }
-        
         })
-        .then(()=> {
-          res.send(dataToSend)
-        })
-        )
+        res.json(dataToSend)
       })
       // .then((data) => {
       //   Disposition.countDocuments({lead: data._id})
