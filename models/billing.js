@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const billingSchema = new Schema({
+   lead: {
+      type: Schema.Types.ObjectId,
+      ref: "Lead"
+   },
    nameOnAccount: String,
    creditCard: String,
    last4: String,

@@ -4,9 +4,7 @@ import React from "react";
 const TableRow = (props) => {
     return(
         <tr>
-            <td>
-                {props.id}
-            </td>
+           
             <td>
                 {props.disposition}
             </td>
@@ -20,22 +18,28 @@ const TableRow = (props) => {
                 {props.lastName}
             </td>
             <td>
+                {props.email}
+            </td>
+            <td>
                 {props.resortName}
             </td>
             <td>
-                {props.mailingAddress}
+                {props.homePhone}
             </td>
             <td>
-                {props.mailingCity}
+                {props.altPhone}
             </td>
             <td>
-                {props.mailingState}
+                {props.address}
             </td>
             <td>
-                {props.MailingPostalCode}
+                {props.city}
             </td>
             <td>
-                {props.email}
+                {props.state}
+            </td>
+            <td>
+                {props.zip}
             </td>
         </tr>
     );

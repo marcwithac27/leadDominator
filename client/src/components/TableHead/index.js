@@ -7,7 +7,7 @@ const TableHead = (props) => {
         <thead>
             <tr>
                 {props.columns.map((columnName) => {
-                    return <th onClick={ () => props.handleSort(columnName)}>{columnName}</th>
+                    return <th key={columnName} onClick={ () => props.handleSort(columnName)}>{columnName}</th>
                 })}
                 
             </tr>

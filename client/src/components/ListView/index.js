@@ -1,16 +1,27 @@
 import React, { useState } from "react";
 import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
-import {Input, FormBtn} from "../Form"
+import PO from "../Popover"
+
+import {FormControl, InputGroup, Table, Container} from "react-bootstrap"
+
 
 
 const ListView = () => {
     const [leads, setLeads] = useState([
         {
-            id: '123',
+            disposition: "NA",
+            attempts: 2,
             firstName: 'marc',
             lastName: 'banana',
-            email: "someemail@emial.com"
+            email: "someemail@emial.com",
+            resortName: "Westgate",
+            homePhone: "3217689889",
+            altNumber: "4078976755",
+            address: "adefafea",
+            city: "aefwafea",
+            state: "afewaefee",
+            zip: "afewaf",
         }
     ])
     const columns = Object.keys(leads[0]);
@@ -25,18 +36,33 @@ const ListView = () => {
     }
     
     return(
-        <>
-        <Input placeholder= "Search"/>
-        <FormBtn/>
+        
+        
+      
+       <Container fluid>
+       <InputGroup className="mb-3">
+    <InputGroup.Prepend>
+      <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
+    </InputGroup.Prepend>
+    <FormControl
+      aria-label="Default"
+      aria-describedby="inputGroup-sizing-default"
+    />
+  </InputGroup>
+       <Table striped bordered hover>
+        
             <TableHead
             columns={columns}
             handleSort={handleSort}
             
             />
-            <>
+           
             <TableBody/>
-            </>
-        </>
+            </Table>
+           
+            <PO/>
+            </Container>
+           
     )
 }
 

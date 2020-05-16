@@ -15,6 +15,6 @@ export default {
   },
   // Saves a book to the database
   saveLead: function(leadData) {
-    return axios.post("/api/books", leadData);
+    return axios.post("/api/leads", leadData);
   }
 };

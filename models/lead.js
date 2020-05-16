@@ -6,15 +6,15 @@ const leadSchema = new Schema({
         type: Schema.Types.ObjectId,
         ref: "Disposition"
     },
-    Attempts: String,
+    assignedTo: {
+        type: Schema.Types.ObjectId,
+        ref: "User"
+    },
     firstname: String,
     lastName: {type:String, required: true},
-    resortName: {
-        type: Schema.Types.ObjectId,
-        ref: "Resorts"
-    },
+    resortName: String,
     homePhone: {type:String, required: true, unique: true},
-    altPhone: {type:String, required: true, unique: true},
+    altPhone: {type:String, unique: true},
     address: String,
     city: String,
     state: String,

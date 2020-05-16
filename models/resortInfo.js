@@ -3,6 +3,10 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const resortSchema = new Schema ({
+   lead: {
+      type: Schema.Types.ObjectId,
+      ref: "Lead"
+   },
    resortName: String,
    resortLocation: String,
    rentalPrice: Number,
