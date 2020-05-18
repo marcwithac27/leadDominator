@@ -6,6 +6,9 @@ export default {
     return axios.get("/api/leads");
   },
   // Gets the book with the given id
+  searchLeads: function(query) {
+    return axios.get("/api/leads/" + query);
+  },
   getLead: function(id) {
     return axios.get("/api/leads/" + id);
   },

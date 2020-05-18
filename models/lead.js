@@ -5,7 +5,7 @@ const leadSchema = new Schema({
     disposition: [{
         type: Schema.Types.ObjectId,
         ref: "Disposition",
-        default: null
+        default: ""
     }],
     assignedTo: {
         type: Schema.Types.ObjectId,
@@ -17,6 +17,9 @@ const leadSchema = new Schema({
     resortName: String,
     homePhone: {type:String, required: true, unique: true},
     altPhone: {type:String, unique: true, default: null},
+    otherPhone1: {type:String, unique: true, default: null},
+    otherPhone2: {type:String, unique: true, default: null},
+    otherPhone3: {type:String, unique: true, default: null},
     address: String,
     city: String,
     state: String,

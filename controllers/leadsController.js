@@ -7,6 +7,23 @@ module.exports = {
       .find(req.query)
       .populate("disposition")
       .sort({ date: -1 })
+      .then((data) => {
+        const fData = data.map(item => {
+          const leadInfo = {
+            disposition: item.disposition[0] || null,
+            attempts: item.disposition ? item.disposition.length : 0,
+            
+            name: item.firstname + " " + item.lastName,
+            phoneNumbers: item.homePhone + " " + item.altPhone,
+            resortName: item.resortName,
+            homePhone: item.homePhone,
+            altPhone: item.altPhone,
+            email: item.email
+          }
+          return leadInfo
+        });
+        res.json(fData)
+      })
       // .then(leads => {
       //   const dataToSend = leads.map(lead => {
       //     return {
@@ -17,17 +34,19 @@ module.exports = {
       //   })
       //   res.json(dataToSend)
       // })
-      .then((data) => {
-        Disposition.countDocuments({lead: data._id})
-        .then(() => {
-          res.send([
-            ...data,
-          ])
-        })
-      })
+      // .then((lead) => {
+      //   console.log(lead.disposition)
+      //   res.send([
+      //     ...lead,
+      //     {disposition: lead[0]},
+      //   ])
+         
+        
+      // })
       .catch(err => next(err));
   },
-  createDispo: function (req,req){
+
+  createDispo: function (req,res, next){
     Lead.findOne({id: req.body.id})
     .then(lead => {
       Disposition.create({
@@ -37,6 +56,7 @@ module.exports = {
         res.json(dispo)
       })
     })
+    .catch(err => next(err));
   },
 
   findById: function(req, res) {

@@ -9,31 +9,10 @@ import {FormControl, InputGroup, Table, Container} from "react-bootstrap"
 
 
 const ListView = () => {
+  // const [lead, setLead] = useState([])
   const [leads, setLeads] = useState([])
   const [columns, setColumns] = useState([])
-    // const [leads, setLeads] = useState([
-        // {
-        //     disposition: "NA",
-        //     attempts: 2,
-        //     firstName: 'marc',
-        //     lastName: 'banana',
-        //     email: "someemail@emial.com",
-        //     resortName: "Westgate",
-        //     homePhone: "3217689889",
-        //     altNumber: "4078976755",
-        //     address: "adefafea",
-        //     city: "aefwafea",
-        //     state: "afewaefee",
-        //     zip: "afewaf",
-        // }
-    // ])
-  //   const columns = () => {
-  //     if (leads[0]) {
-  //         return Object.keys(leads[0])
-  //     }
-  //     return []
-  // }
-
+  const [inputObj, setInputObj] = useState("") 
     //const [sortKey, setSortKey] = useState('')
 
     const handleSort = (fieldToSortBy) => {
@@ -51,13 +30,47 @@ const ListView = () => {
     const loadLeads = () => {
         API.getLeads()
         .then(res => {
-           console.log("res.data",Array.isArray(res.data))
             setLeads(res.data)
             setColumns(Object.keys(res.data[0]))
         }
         )
         .catch(err => console.log(err));
     }
+
+    // useEffect(() => {
+    //   findLeads()
+    // }, [])
+
+    // const findLeads = (query) => {
+    //   API.searchLeads(query)
+    //   .then(res => {
+    //     setLeads(res.data)
+    //     setColumns(Object.keys(res.data[0]))
+    //   })
+    //   .catch(err => console.log(err));
+    // }
+
+    const handleIC = (event) => {
+      const {value} = event.target;
+      setInputObj({...inputObj, value})
+    }
+
+    const handleIS = (event) => {
+      // useEffect(() => {
+      //   findLeads()
+      // }, [])
+     
+        API.searchLeads(event)
+        .then(res => {
+          setLeads(res.data)
+          setColumns(Object.keys(res.data[0]))
+        })
+        .catch(err => console.log(err));
+      
+    }
+
+    
+
     return(
         
         
@@ -67,7 +80,7 @@ const ListView = () => {
     <InputGroup.Prepend>
       <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
     </InputGroup.Prepend>
-    <FormControl
+    <FormControl onChange={handleIC} onSubmit={handleIS}
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
     />
