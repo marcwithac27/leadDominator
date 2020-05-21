@@ -16,35 +16,16 @@ module.exports = {
             name: item.firstname + " " + item.lastName,
             phoneNumbers: item.homePhone + " " + item.altPhone,
             resortName: item.resortName,
-            homePhone: item.homePhone,
-            altPhone: item.altPhone,
             email: item.email
           }
           return leadInfo
         });
         res.json(fData)
       })
-      // .then(leads => {
-      //   const dataToSend = leads.map(lead => {
-      //     return {
-      //       ...lead,
-      //       disposition: lead.disposition[0],
-      //       attempts: lead.disposition.length
-      //     }
-      //   })
-      //   res.json(dataToSend)
-      // })
-      // .then((lead) => {
-      //   console.log(lead.disposition)
-      //   res.send([
-      //     ...lead,
-      //     {disposition: lead[0]},
-      //   ])
-         
-        
-      // })
       .catch(err => next(err));
   },
+
+  
 
   createDispo: function (req,res, next){
     Lead.findOne({id: req.body.id})
@@ -59,29 +40,29 @@ module.exports = {
     .catch(err => next(err));
   },
 
-  findById: function(req, res) {
+  findById: function(req, res, next) {
     Lead
       .findById(req.params.id)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => next(err));
   },
-  create: function(req, res) {
+  create: function(req, res, next) {
     Lead
       .create(req.body)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => next(err));
   },
-  update: function(req, res) {
+  update: function(req, res, next) {
     Lead
       .findOneAndUpdate({ _id: req.params.id }, req.body)
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => next(err));
   },
-  remove: function(req, res) {
+  remove: function(req, res, next) {
     Lead
       .findById({ _id: req.params.id })
       .then(dbModel => dbModel.remove())
       .then(dbModel => res.json(dbModel))
-      .catch(err => res.status(422).json(err));
+      .catch(err => next(err));
   }
 };

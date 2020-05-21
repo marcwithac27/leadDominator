@@ -1,5 +1,5 @@
 import React from "react";
-
+import Collap from "../Collapes"
 
 const TableBody = ({leads, columns}) => {
     let rows = [];
@@ -25,9 +25,11 @@ const TableBody = ({leads, columns}) => {
                             return <td>{(data)}</td>
                         })
                     }
+                    
                 </tr>
             })
         }
+        
     </tbody>
     )
 }

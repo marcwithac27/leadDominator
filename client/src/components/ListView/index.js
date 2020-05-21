@@ -13,6 +13,7 @@ const ListView = () => {
   const [leads, setLeads] = useState([])
   const [columns, setColumns] = useState([])
   const [inputObj, setInputObj] = useState("") 
+  const [filteredLeads, setFilteredLeads] = useState([...leads])
     //const [sortKey, setSortKey] = useState('')
 
     const handleSort = (fieldToSortBy) => {
@@ -32,6 +33,7 @@ const ListView = () => {
         .then(res => {
             setLeads(res.data)
             setColumns(Object.keys(res.data[0]))
+            setFilteredLeads(res.data)
         }
         )
         .catch(err => console.log(err));
@@ -50,24 +52,24 @@ const ListView = () => {
     //   .catch(err => console.log(err));
     // }
 
+    
+
     const handleIC = (event) => {
       const {value} = event.target;
-      setInputObj({...inputObj, value})
+      setFilteredLeads({...filteredLeads, value})
     }
 
-    const handleIS = (event) => {
-      // useEffect(() => {
-      //   findLeads()
-      // }, [])
+   
+     const found = []
      
-        API.searchLeads(event)
-        .then(res => {
-          setLeads(res.data)
-          setColumns(Object.keys(res.data[0]))
-        })
-        .catch(err => console.log(err));
-      
-    }
+     const filtered = Object.keys(leads)
+     .filter(key => found.includes(key))
+     .reduce((obj, key) => {
+       obj[key] = leads[key];
+       console.log(obj)
+       return obj;
+     }, {});
+    
 
     
 
@@ -78,9 +80,9 @@ const ListView = () => {
        <Container fluid>
        <InputGroup className="mb-3">
     <InputGroup.Prepend>
-      <InputGroup.Text id="inputGroup-sizing-default">Search</InputGroup.Text>
+      <InputGroup.Text onChange={filtered}  id="inputGroup-sizing-default">Search</InputGroup.Text>
     </InputGroup.Prepend>
-    <FormControl onChange={handleIC} onSubmit={handleIS}
+    <FormControl 
       aria-label="Default"
       aria-describedby="inputGroup-sizing-default"
     />
@@ -93,8 +95,8 @@ const ListView = () => {
             
             />
            
-            <TableBody leads={leads}
-            columns={columns}/>
+            <TableBody leads={leads} columns={columns}></TableBody>
+            
             </Table>
            
             <PO/>
