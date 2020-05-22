@@ -1,7 +1,6 @@
 import React from "react";
-import Collap from "../Collapes"
 
-const TableBody = ({leads, columns}) => {
+const TableBody = ({leads, columns, selectRow}) => {
     let rows = [];
     leads.forEach(lead => {
         const row = [];
@@ -16,19 +15,25 @@ const TableBody = ({leads, columns}) => {
     })
     
     return (
+        
     <tbody>
+        
         {
             rows.map(row => {
                 return <tr>
+                    <td><button onClick={() => selectRow(row.id)}>View Info</button></td>
                     {
                         row.map(data => {
+                           
                             return <td>{(data)}</td>
                         })
+                        
                     }
                     
                 </tr>
             })
         }
+        
         
     </tbody>
     )

@@ -1,27 +1,251 @@
 import React from "react";
-
+import { Form, Col} from "react-bootstrap"
 // This file exports the Input, TextArea, and FormBtn components
 
-export function Input(props) {
+export function Status() {
   return (
-    <div className="form-group">
-      <input className="form-control" {...props} />
-    </div>
+    <Form>
+      <Form.Label>Status</Form.Label>
+        <Form.Control as="select">
+          <option>NA</option>
+          <option>LM</option>
+          <option>CB</option>
+          <option>DNO</option>
+          <option>DNC</option>
+          <option>NI</option>
+          <option>TR</option>
+        </Form.Control>
+    </Form>
   );
 }
 
-export function TextArea(props) {
+export function ResortInfo() {
   return (
-    <div className="form-group">
-      <textarea className="form-control" rows="20" {...props} />
-    </div>
+    <Form>
+      <Form.Row>
+    <Col>
+    <Form.Label>Deeded</Form.Label>
+    <Form.Control as="select">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Banked</Form.Label>
+    <Form.Control as="select">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Additional</Form.Label>
+    <Form.Control as="select">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Exchange</Form.Label>
+    <Form.Control as="select">
+      <option>RCI</option>
+      <option>II</option>
+      <option>DAE</option>
+      <option>Trading Places</option>
+      <option>RTX</option>
+      <option>Platinum Interchange</option>
+    </Form.Control>
+    </Col>
+  </Form.Row>
+  <Form.Row>
+    <Col>
+    <Form.Label>Bedrooms</Form.Label>
+    <Form.Control as="select">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Bedrooms</Form.Label>
+    <Form.Control as="select">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Week Type</Form.Label>
+    <Form.Control as="select">
+      <option>Floating</option>
+      <option>Fixed</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Wk Pts</Form.Label>
+    <Form.Control as="select">
+      <option>Week</option>
+      <option>Points</option>
+    </Form.Control>
+    </Col>
+  </Form.Row>
+  <Form.Row>
+    <Col>
+    <Form.Label>Unit</Form.Label>
+    <Form.Control as="select">
+      <option>Studio</option>
+      <option>Standard</option>
+      <option>Lockout </option>
+      <option>Deluxe</option>
+      <option>Oceanside</option>
+      <option>Presidential</option>
+      <option>Other</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Usage</Form.Label>
+    <Form.Control as="select">
+      <option>Annual</option>
+      <option>Biennial</option>
+      <option>Triennial</option>
+      <option>Quadrennial</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Ownership</Form.Label>
+    <Form.Control as="select">
+      <option>Deeded</option>
+      <option>Leased</option>
+    </Form.Control>
+    </Col>
+    <Col>
+    <Form.Label>Rental Price</Form.Label>
+    <Form.Control name="rentalPrice" placeholder="Rental Price" />
+    </Col>
+  </Form.Row>
+    </Form>
   );
 }
 
-export function FormBtn(props) {
+export function BillingInfo() {
   return (
-    <button {...props} style={{ float: "center", marginBottom: 10 }} className="btn btn-success">
-      {props.children}
-    </button>
+    <Form>
+      <Form.Row>
+    <Col>
+      <Form.Control name="nameOn Account" placeholder="Name On Account" />
+    </Col>
+    <Col>
+      <Form.Control name="billingAddress" placeholder="Billing Address" />
+    </Col>
+    <Col>
+      <Form.Control name="billingCity" placeholder="Billing City" />
+    </Col>
+    <Col>
+      <Form.Control name="billingState" placeholder="Billing State" />
+    </Col>
+  </Form.Row>
+  <Form.Row>
+    <Col>
+      <Form.Control name="billingZip" placeholder="Billing Zip" />
+    </Col>
+    <Col>
+      <Form.Control name="cardNumber" placeholder="cardNumber" />
+    </Col>
+    <Col>
+      <Form.Control name="expMonth" placeholder="Exp Month" />
+    </Col>
+    <Col>
+      <Form.Control name="expYear" placeholder="Exp Year" />
+    </Col>
+  </Form.Row> 
+  <Form.Row>
+    <Col>
+      <Form.Control name="cvv" placeholder="CV2" />
+    </Col>
+    <Col>
+      <Form.Control name="bankName" placeholder="Bank Name" />
+    </Col>
+    <Col>
+      <Form.Control name="checkNumber" placeholder="Check Number" />
+    </Col>
+    <Col>
+      <Form.Control name="routingNumber" placeholder="Routing Number" />
+    </Col>
+  </Form.Row>
+  <Form.Row>
+    <Col>
+      <Form.Control name="bankAccountNumber" placeholder="Account Number" />
+    </Col>
+    <Col>
+      <Form.Control name="adAmount" placeholder="Advertising Fee" />
+    </Col>
+  </Form.Row>
+    </Form>
   );
+}
+
+export function leadDetail() {
+  return(
+    <Form>
+      <Form.Row>
+    <Col>
+      <Form.Control name="firstName" placeholder="First name" />
+    </Col>
+    <Col>
+      <Form.Control name="lastName" placeholder="Last name" />
+    </Col>
+    <Col>
+      <Form.Control name="email" placeholder="Email" />
+    </Col>
+    <Col>
+      <Form.Control name="resortName" placeholder="Resort Name" />
+    </Col>
+  </Form.Row>
+  <Form.Row>
+    <Col>
+      <Form.Control name="homePhone" placeholder="Home Phone" />
+    </Col>
+    <Col>
+      <Form.Control name="altPhone" placeholder="Alt Phone" />
+    </Col>
+    <Col>
+      <Form.Control name="otherPhone1" placeholder="Other Phone" />
+    </Col>
+    <Col>
+      <Form.Control name="otherPhone2" placeholder="Other Phone" />
+    </Col>
+  </Form.Row> 
+  <Form.Row>
+    <Col>
+      <Form.Control name="address" placeholder="Address" />
+    </Col>
+    <Col>
+      <Form.Control name="city" placeholder="City" />
+    </Col>
+    <Col>
+      <Form.Control name="state" placeholder="State" />
+    </Col>
+    <Col>
+      <Form.Control name="zip" placeholder="Zip" />
+    </Col>
+  </Form.Row>
+    </Form>
+  )
 }

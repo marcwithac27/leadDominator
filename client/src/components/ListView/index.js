@@ -3,8 +3,10 @@ import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
 import PO from "../Popover"
 import API from "../../utils/API"
-
-import {FormControl, InputGroup, Table, Container} from "react-bootstrap"
+import * as Modal from "../Modal"
+// import Modal from "../Modal"
+// import {Status, ResortInfo, BillingInfo}from "../Form"
+import {FormControl, InputGroup, Table, Container, Button} from "react-bootstrap"
 
 
 
@@ -56,10 +58,15 @@ const ListView = () => {
 
     const handleIC = (event) => {
       const {value} = event.target;
-      setFilteredLeads({...filteredLeads, value})
+      setFilteredLeads({...filtered, value})
     }
 
+    // create handler to pass into TableBody
+    // This should have the id of the lead
+    // leads.find where lead.id === id
+    // this part of state (selectedLead) will be passed into the modal
    
+    
      const found = []
      
      const filtered = Object.keys(leads)
@@ -80,7 +87,7 @@ const ListView = () => {
        <Container fluid>
        <InputGroup className="mb-3">
     <InputGroup.Prepend>
-      <InputGroup.Text onChange={filtered}  id="inputGroup-sizing-default">Search</InputGroup.Text>
+      <InputGroup.Text onChange={handleIC}  id="inputGroup-sizing-default">Search</InputGroup.Text>
     </InputGroup.Prepend>
     <FormControl 
       aria-label="Default"
@@ -100,9 +107,12 @@ const ListView = () => {
             </Table>
            
             <PO/>
+            {Modal.DetailModal}
             </Container>
            
     )
+    // <BillingModal onShow={someStateForBillingMOdal} selectedLead={stateForSelectedLEad} />
+    // <ResortModal onShow={someStateForBillingMOdal} selectedLead={stateForSelectedLEad}/>
 }
 
 export default ListView;
