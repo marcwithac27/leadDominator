@@ -21,7 +21,7 @@ const TableBody = ({leads, columns, selectRow}) => {
         {
             rows.map(row => {
                 return <tr>
-                    <td><button onClick={() => selectRow(row.id)}>View Info</button></td>
+                    {/* <td><button onClick={() => selectRow(row.id)}>View Info</button></td> */}
                     {
                         row.map(data => {
                            

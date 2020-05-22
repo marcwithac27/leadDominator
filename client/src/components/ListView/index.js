@@ -3,7 +3,7 @@ import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
 import PO from "../Popover"
 import API from "../../utils/API"
-import * as Modal from "../Modal"
+import * as Modals from "../Modal"
 // import Modal from "../Modal"
 // import {Status, ResortInfo, BillingInfo}from "../Form"
 import {FormControl, InputGroup, Table, Container, Button} from "react-bootstrap"
@@ -107,7 +107,6 @@ const ListView = () => {
             </Table>
            
             <PO/>
-            {Modal.DetailModal}
             </Container>
            
     )
