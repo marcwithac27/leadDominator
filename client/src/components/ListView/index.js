@@ -6,7 +6,7 @@ import API from "../../utils/API"
 import * as Modals from "../Modal"
 // import Modal from "../Modal"
 // import {Status, ResortInfo, BillingInfo}from "../Form"
-import {FormControl, InputGroup, Table, Container, Button} from "react-bootstrap"
+import {FormControl, InputGroup, Table, Container, Button, Modal} from "react-bootstrap"
 
 
 
@@ -16,6 +16,7 @@ const ListView = () => {
   const [columns, setColumns] = useState([])
   const [inputObj, setInputObj] = useState("") 
   const [filteredLeads, setFilteredLeads] = useState([...leads])
+  const [selectedLead, setSelectedLead] = useState()
     //const [sortKey, setSortKey] = useState('')
 
     const handleSort = (fieldToSortBy) => {
@@ -54,7 +55,10 @@ const ListView = () => {
     //   .catch(err => console.log(err));
     // }
 
-    
+    const handleSelect = (event) => {
+      const {value} = event.target;
+      setSelectedLead({...selectedLead, value})
+    }
 
     const handleIC = (event) => {
       const {value} = event.target;
@@ -107,6 +111,7 @@ const ListView = () => {
             </Table>
            
             <PO/>
+            <div Modals={Modals.DetailModal}></div>
             </Container>
            
     )

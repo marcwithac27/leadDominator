@@ -10,13 +10,13 @@ module.exports = {
       .then((data) => {
         const fData = data.map(item => {
           const leadInfo = {
-            disposition: item.disposition[0] || null,
-            attempts: item.disposition ? item.disposition.length : 0,
+            Disposition: item.disposition[0] || null,
+            Attempts: item.disposition ? item.disposition.length : 0,
             
-            name: item.firstname + " " + item.lastName,
-            phoneNumbers: item.homePhone + " " + item.altPhone,
-            resortName: item.resortName,
-            email: item.email
+            Name: item.tableData.firstName + " " + item.lastName,
+            Phone_Numbers: item.homePhone + " " + item.altPhone,
+            ResortName: item.resortName,
+            Email: item.email
           }
           return leadInfo
         });
