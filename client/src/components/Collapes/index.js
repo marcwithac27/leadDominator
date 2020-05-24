@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 import Collapsible from 'react-collapsible';
-import {FormControl, Form, Button, Col, Modal} from "react-bootstrap"
+import { Form, Button, Col, Modal} from "react-bootstrap"
 
 
 const Collap = () => {
@@ -58,6 +58,7 @@ const Collap = () => {
     <Col>
     <Form.Label>Deeded</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -69,6 +70,7 @@ const Collap = () => {
     <Col>
     <Form.Label>Banked</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -80,6 +82,7 @@ const Collap = () => {
     <Col>
     <Form.Label>Additional</Form.Label>
     <Form.Control as="select">
+      <option>0</option> 
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -104,6 +107,7 @@ const Collap = () => {
     <Col>
     <Form.Label>Bedrooms</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -113,8 +117,9 @@ const Collap = () => {
     </Form.Control>
     </Col>
     <Col>
-    <Form.Label>Bedrooms</Form.Label>
+    <Form.Label>Bathrooms</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>

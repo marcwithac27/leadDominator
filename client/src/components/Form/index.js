@@ -30,6 +30,7 @@ export function ResortInfo() {
     <Col>
     <Form.Label>Deeded</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -41,6 +42,7 @@ export function ResortInfo() {
     <Col>
     <Form.Label>Banked</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -52,6 +54,7 @@ export function ResortInfo() {
     <Col>
     <Form.Label>Additional</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -76,6 +79,7 @@ export function ResortInfo() {
     <Col>
     <Form.Label>Bedrooms</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -87,6 +91,7 @@ export function ResortInfo() {
     <Col>
     <Form.Label>Bedrooms</Form.Label>
     <Form.Control as="select">
+      <option>0</option>
       <option>1</option>
       <option>2</option>
       <option>3</option>
@@ -211,10 +216,11 @@ export function BillingInfo() {
   );
 }
 
-export function leadDetail() {
+export function LeadDetail() {
   return(
     <Form>
-      <Form.Row>
+     <Form.Group controlId="exampleForm.ControlInput1">
+     <Form.Row>
     <Col>
       <Form.Control name="firstName" placeholder="First name" />
     </Col>
@@ -256,6 +262,65 @@ export function leadDetail() {
       <Form.Control name="zip" placeholder="Zip" />
     </Col>
   </Form.Row>
+     </Form.Group>
     </Form>
   );
 }
+
+export function AddLead(){
+  return(
+    <Form>
+    <Form.Row>
+        <Col>
+        <Form.Control 
+        placeholder="First Name"
+        name = "firstName" 
+        
+        />
+        </Col>
+        <Col>
+        <Form.Control 
+        placeholder="Last Name"
+        name = "lastName"
+         
+        />
+        </Col>
+    </Form.Row>
+    <Form.Row>
+        <Col>
+        <Form.Control 
+        placeholder="Home Phone"
+        name = "homePhone"
+          
+        />
+        </Col>
+        <Col>
+        <Form.Control 
+        placeholder="Alt Phone" 
+        name = "altPhone"
+         
+        />
+        </Col>
+    </Form.Row>
+    <Form.Row>
+        <Col>
+        <Form.Control 
+        placeholder="Email"
+        name = "email"
+         
+        />
+        </Col>
+        <Col>
+        <Form.Control 
+        placeholder="Resort"
+        name = "resortName"
+         
+        />
+        </Col>
+    </Form.Row>
+</Form>
+  )
+}
+
+
+

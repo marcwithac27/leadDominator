@@ -27,8 +27,6 @@ const PO = () => {
         resortName: formObject.resortName
         
       }})
-      
-       
         
         .catch(err => console.log(err));
     }

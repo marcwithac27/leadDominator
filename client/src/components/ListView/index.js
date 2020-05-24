@@ -3,7 +3,7 @@ import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
 import PO from "../Popover"
 import API from "../../utils/API"
-import {BillingModal,DetailModal,ResortModal,StatusModal} from "../Modal"
+import {BillingModal,DetailModal,ResortModal,StatusModal,AddLeadModal} from "../Modal"
 // import Modal from "../Modal"
 // import {Status, ResortInfo, BillingInfo}from "../Form"
 import {FormControl, InputGroup, Table, Container, Button, Modal} from "react-bootstrap"
@@ -20,12 +20,12 @@ const ListView = () => {
   const [selectedLead, setSelectedLead] = useState()
     //const [sortKey, setSortKey] = useState('')
 
-    const handleSort = (fieldToSortBy) => {
-        const sortedArray = leads.sort((itema, itemb) => {
-           return itema[fieldToSortBy] - itemb[fieldToSortBy]
-        })
-        setLeads(sortedArray)
-    }
+    // const handleSort = (fieldToSortBy) => {
+    //     const sortedArray = leads.sort((itema, itemb) => {
+    //        return itema[fieldToSortBy] - itemb[fieldToSortBy]
+    //     })
+    //     setLeads(sortedArray)
+    // }
     
 
     useEffect(() => {
@@ -57,15 +57,15 @@ const ListView = () => {
     //   .catch(err => console.log(err));
     // }
 
-    const handleSelect = (event) => {
-      const {value} = event.target;
-      setSelectedLead({...selectedLead, value})
-    }
+    // const handleSelect = (event) => {
+    //   const {value} = event.target;
+    //   setSelectedLead({...selectedLead, value})
+    // }
 
-    const handleIC = (event) => {
-      const {value} = event.target;
-      setFilteredLeads({...filtered, value})
-    }
+    // const handleIC = (event) => {
+    //   const {value} = event.target;
+    //   setFilteredLeads({...filtered, value})
+    // }
 
     // create handler to pass into TableBody
     // This should have the id of the lead
@@ -93,7 +93,7 @@ const ListView = () => {
        <Container fluid>
        <InputGroup className="mb-3">
     <InputGroup.Prepend>
-      <InputGroup.Text onChange={handleIC}  id="inputGroup-sizing-default">Search</InputGroup.Text>
+      <InputGroup.Text  id="inputGroup-sizing-default">Search</InputGroup.Text>
     </InputGroup.Prepend>
     <FormControl 
       aria-label="Default"
@@ -104,7 +104,7 @@ const ListView = () => {
         
             <TableHead
             columns={columns}
-            handleSort={handleSort}
+            
             
             />
            
@@ -112,7 +112,7 @@ const ListView = () => {
             
             </Table>
            
-            <PO/>
+            <AddLeadModal/>
             <BillingModal/>
             <StatusModal/>
             <DetailModal/>
