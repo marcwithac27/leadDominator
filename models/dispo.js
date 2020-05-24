@@ -3,7 +3,12 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const dispoSchema = new Schema({
-    date: Date,
+    date: {
+        type: Date,
+        
+
+    },
+    note: String,
     status: String,
     user: {
         type: Schema.Types.ObjectId,

@@ -15,6 +15,10 @@ export function Status() {
           <option>NI</option>
           <option>TR</option>
         </Form.Control>
+        <Form.Group controlId="exampleForm.ControlTextarea1">
+    <Form.Label>Notes</Form.Label>
+    <Form.Control as="textarea" rows="3" />
+  </Form.Group>
     </Form>
   );
 }
@@ -154,7 +158,9 @@ export function BillingInfo() {
     <Col>
       <Form.Control name="billingAddress" placeholder="Billing Address" />
     </Col>
-    <Col>
+  </Form.Row>
+  <Form.Row>
+  <Col>
       <Form.Control name="billingCity" placeholder="Billing City" />
     </Col>
     <Col>
@@ -166,35 +172,39 @@ export function BillingInfo() {
       <Form.Control name="billingZip" placeholder="Billing Zip" />
     </Col>
     <Col>
+      <Form.Control name="adAmount" placeholder="Advertising Fee" />
+    </Col>
+  </Form.Row> 
+  <Form.Row>
+  <Col>
       <Form.Control name="cardNumber" placeholder="cardNumber" />
     </Col>
     <Col>
       <Form.Control name="expMonth" placeholder="Exp Month" />
     </Col>
-    <Col>
+  </Form.Row>
+  <Form.Row>
+  <Col>
       <Form.Control name="expYear" placeholder="Exp Year" />
     </Col>
-  </Form.Row> 
-  <Form.Row>
     <Col>
       <Form.Control name="cvv" placeholder="CV2" />
     </Col>
-    <Col>
+  </Form.Row>
+  <Form.Row>
+  <Col>
       <Form.Control name="bankName" placeholder="Bank Name" />
     </Col>
-    <Col>
+  <Col>
       <Form.Control name="checkNumber" placeholder="Check Number" />
-    </Col>
-    <Col>
-      <Form.Control name="routingNumber" placeholder="Routing Number" />
     </Col>
   </Form.Row>
   <Form.Row>
-    <Col>
-      <Form.Control name="bankAccountNumber" placeholder="Account Number" />
+  <Col>
+      <Form.Control name="routingNumber" placeholder="Routing Number" />
     </Col>
     <Col>
-      <Form.Control name="adAmount" placeholder="Advertising Fee" />
+      <Form.Control name="bankAccountNumber" placeholder="Account Number" />
     </Col>
   </Form.Row>
     </Form>
@@ -247,5 +257,5 @@ export function leadDetail() {
     </Col>
   </Form.Row>
     </Form>
-  )
+  );
 }

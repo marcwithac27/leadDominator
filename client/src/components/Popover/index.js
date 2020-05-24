@@ -25,14 +25,15 @@ const PO = () => {
       
     event.preventDefault();
     if (formObject.lastName && formObject.resortName && formObject.homePhone) {
-      API.saveLead({
+      API.saveLead({tableData:{
         firstname: formObject.firstName,
         lastName: formObject.lastName,
         homePhone: formObject.homePhone,
         altPhone: formObject.altPhone,
         email: formObject.email,
         resortName: formObject.resortName
-      })
+      }})
+      console.log(tableData)
         .then(res => loadLeads())
         .catch(err => console.log(err));
     }
@@ -106,7 +107,7 @@ const PO = () => {
                     />
                     </Col>
                 </Row>
-                <Button onClick = {handleFormSubmit} >Save</Button>
+                <Button onClick = {handleFormSubmit, loadLeads} >Save</Button>
             </Form>
           </Popover.Content>
         </Popover>

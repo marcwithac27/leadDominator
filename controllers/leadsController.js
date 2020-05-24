@@ -13,7 +13,7 @@ module.exports = {
             Disposition: item.disposition[0] || null,
             Attempts: item.disposition ? item.disposition.length : 0,
             
-            Name: item.tableData.firstName + " " + item.lastName,
+            Name: item.firstName + " " + item.lastName,
             Phone_Numbers: item.homePhone + " " + item.altPhone,
             ResortName: item.resortName,
             Email: item.email
@@ -47,8 +47,25 @@ module.exports = {
       .catch(err => next(err));
   },
   create: function(req, res, next) {
+    const reqbody = {
+      firstName: "",
+      lastName: "",
+      homePhone: "",
+      altPhone: "",
+      email: "",
+      resort: "",
+    }
     Lead
-      .create(req.body)
+      .create({
+        tableData: {
+          firstname: reqbody.firstName,
+          lastName: reqbody.lastName,
+          homePhone: reqbody.homePhone,
+          altPhone: reqbody.altPhone,
+          email: reqbody.email,
+          resortName: reqbody.resort
+        }
+      })
       .then(dbModel => res.json(dbModel))
       .catch(err => next(err));
   },

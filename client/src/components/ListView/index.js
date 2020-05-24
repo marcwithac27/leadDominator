@@ -3,10 +3,11 @@ import TableBody from "../TableBody/index"
 import TableHead from "../TableHead/index"
 import PO from "../Popover"
 import API from "../../utils/API"
-import * as Modals from "../Modal"
+import {BillingModal,DetailModal,ResortModal,StatusModal} from "../Modal"
 // import Modal from "../Modal"
 // import {Status, ResortInfo, BillingInfo}from "../Form"
 import {FormControl, InputGroup, Table, Container, Button, Modal} from "react-bootstrap"
+import { BillingInfo } from "../Form";
 
 
 
@@ -34,6 +35,7 @@ const ListView = () => {
     const loadLeads = () => {
         API.getLeads()
         .then(res => {
+          console.log(res.data)
             setLeads(res.data)
             setColumns(Object.keys(res.data[0]))
             setFilteredLeads(res.data)
@@ -111,7 +113,11 @@ const ListView = () => {
             </Table>
            
             <PO/>
-            <div Modals={Modals.DetailModal}></div>
+            <BillingModal/>
+            <StatusModal/>
+            <DetailModal/>
+            <ResortModal/>
+
             </Container>
            
     )

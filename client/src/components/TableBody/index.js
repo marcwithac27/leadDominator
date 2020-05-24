@@ -3,6 +3,7 @@ import React from "react";
 const TableBody = ({leads, columns, selectRow}) => {
     let rows = [];
     leads.forEach(lead => {
+        console.log(leads)
         const row = [];
         columns.forEach(column => {
             row.push(lead[column])
