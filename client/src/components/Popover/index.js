@@ -8,19 +8,12 @@ const PO = () => {
   const [show, setShow] = useState(false);
   const [target, setTarget] = useState(null);
   const [formObject, setFormObject] = useState({})
-  const [leads, setLeads] = useState([])
   const ref = useRef(null);
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormObject({...formObject, [name]: value})
   };
-  const loadLeads = () => {
-    API.getLeads()
-      .then(res => 
-        setLeads(res.data)
-      )
-      .catch(err => console.log(err));
-  };
+  
   const handleFormSubmit = (event) => {
       
     event.preventDefault();
@@ -32,9 +25,11 @@ const PO = () => {
         altPhone: formObject.altPhone,
         email: formObject.email,
         resortName: formObject.resortName
+        
       }})
-      console.log(tableData)
-        .then(res => loadLeads())
+      
+       
+        
         .catch(err => console.log(err));
     }
   };
@@ -107,7 +102,7 @@ const PO = () => {
                     />
                     </Col>
                 </Row>
-                <Button onClick = {handleFormSubmit, loadLeads} >Save</Button>
+                <Button onClick = {handleFormSubmit} >Save</Button>
             </Form>
           </Popover.Content>
         </Popover>
