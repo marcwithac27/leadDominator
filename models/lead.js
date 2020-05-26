@@ -12,53 +12,60 @@ const leadSchema = new Schema({
         ref: "User"
     },
     tableData: {
-        firstname: String,
-        lastName: {type:String, required: true},
+        firstName: String,
+        lastName: { type: String, required: true },
         resortName: String,
-        homePhone: {type:String, required: true, unique: true, max: 10},
-        altPhone: {type:String, unique: true, default: null, max: 10},
-        otherPhone1: {type:String, unique: true, default: null, max: 10},
-        otherPhone2: {type:String, unique: true, default: null, max:10},
+        homePhone: { type: String, required: true, unique: true, max: 10 },
+        altPhone: { type: String, unique: true, default: null, max: 10 },
+        otherPhone1: { type: String, unique: true,  max: 10 },
+        otherPhone2: { type: String, unique: true, max: 10 },
         source: String,
         email: {
             type: String,
             unique: true
+        },
+
+
     },
     meta: {
-        addressInfo: {address: String,
+        addressInfo: {
+            address: String,
             city: String,
             state: String,
             zip: String,
-            source: String,},
+            source: String,
+        },
         resortInfo: {
             deeded: {
-            type: Number,
-            max:1
-        },
+                type: Number,
+                max: 1
+            },
             banked: {
-            type: Number,
-            max:1
-        },
+                type: Number,
+                max: 1
+            },
             additional: {
-            type: Number,
-            max:1
-        },
+                type: Number,
+                max: 1
+            },
             exchange: String,
             bedrooms: {
                 type: Number,
-                max:1
+                max: 1
             },
             bathrooms: {
                 type: Number,
-                max:1
+                max: 1
             },
             weekType: String,
             wkPts: String,
             unit: String,
             usage: String,
             ownership: String,
-            rentalPrice: Number,},
-        billing: {nameOnAccount: String,
+            rentalPrice: Number,
+        },
+        billing: {
+            nameOnAccount: String,
             billingAddress: String,
             billingCity: String,
             billingState: String,
@@ -71,9 +78,8 @@ const leadSchema = new Schema({
             checkNumber: Number,
             routingNumber: String,
             bankAccountNumber: String,
-            adAmount: String}
-    },
-    
+            adAmount: String
+        }
     },
 });
 

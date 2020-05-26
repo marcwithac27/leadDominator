@@ -73,8 +73,8 @@ export function BillingModal() {
 
       <Modal size="lg"
         show={show}
-        onHide={() => setShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg" show={show} onHide={handleClose}>
+        // onHide={() => setShow(false)}
+        show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Billing Detail</Modal.Title>
         </Modal.Header>
@@ -142,9 +142,6 @@ export function AddLeadModal(){
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>

@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const dispoSchema = new Schema({
     date: {
         type: Date,
-        
+
 
     },
     note: String,
@@ -16,7 +16,7 @@ const dispoSchema = new Schema({
     },
     lead: {
         type: Schema.Types.ObjectId,
-        ref:"Lead"
+        ref: "Lead"
     }
 });
 
