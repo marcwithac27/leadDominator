@@ -25,12 +25,22 @@ export function Status() {
 }
 
 export function ResortInfo() {
+  // const initFormValues = {
+  //   deeded
+  // }
+  // const [formObject, setFormObject] = useState(initFormValues)
+  // const handleInputChange = (event) => {
+  //   const { name, value } = event.target;
+  //   setFormObject({ ...formObject, [name]: value })
   return (
     <Form>
       <Form.Row>
         <Col>
           <Form.Label>Deeded</Form.Label>
-          <Form.Control as="select">
+          <Form.Control 
+          as="select"
+          name="deeded"
+          >
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -217,14 +227,27 @@ export function BillingInfo() {
   );
 }
 
-export function LeadDetail(props) {
-  const [formObject, setFormObject] = useState({})
+export function LeadDetail({selectedLead}) {
+  const initFormValues = {
+    firstName: selectedLead.tableData.firstName,
+    lastName: selectedLead.tableData.lastName,
+    homePhone: selectedLead.tableData.homePhone,
+    altPhone: selectedLead.tableData.altPhone,
+    email: selectedLead.tableData.email,
+    resortName: selectedLead.tableData.resortName,
+    otherPhone1: selectedLead.tableData.otherPhone1,
+    otherPhone2: selectedLead.tableData.otherPhone2,
+    address: selectedLead.meta.addressInfo.address,
+    city: selectedLead.meta.addressInfo.city,
+    state: selectedLead.meta.addressInfo.state,
+    zip: selectedLead.meta.addressInfo.zip
+  }
+  const [formObject, setFormObject] = useState(initFormValues)
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormObject({ ...formObject, [name]: value })
   };
   const handleFormSubmit = (event) => {
-
     event.preventDefault();
     if (formObject.lastName && formObject.resortName && formObject.homePhone) {
       API.updateLead({
@@ -234,8 +257,9 @@ export function LeadDetail(props) {
           homePhone: formObject.homePhone,
           altPhone: formObject.altPhone,
           email: formObject.email,
-          resortName: formObject.resortName
-
+          resortName: formObject.resortName,
+          otherPhone1: formObject.otherPhone1,
+          otherPhone2: formObject.otherPhone2
         },
         meta: {
           addressInfo: {
@@ -259,9 +283,9 @@ export function LeadDetail(props) {
           <Col>
             <Form.Control 
             name="firstName" 
-            placeholder="First name"
+            placeholder="First Name"
             onChange={handleInputChange}
-            value={props.firstName}
+            value={formObject.firstName}
             />
           </Col>
           <Col>
@@ -269,7 +293,7 @@ export function LeadDetail(props) {
             name="lastName" 
             placeholder="Last name" 
             onChange={handleInputChange}
-            value={props.lastName}
+            value={formObject.lastName}
             />
           </Col>
         </Form.Row>
@@ -279,14 +303,14 @@ export function LeadDetail(props) {
             name="email"
             placeholder="Email" 
             onChange={handleInputChange}
-            value={props.email}
+            value={formObject.email}
             />
           </Col>
           <Col>
             <Form.Control 
             name="resortName" placeholder="Resort Name" 
             onChange={handleInputChange}
-            value={props.resortName}
+            value={formObject.resortName}
             />
           </Col>
         </Form.Row>
@@ -296,7 +320,7 @@ export function LeadDetail(props) {
             name="homePhone" 
             placeholder="Home Phone" 
             onChange={handleInputChange}
-            value={props.homePhone}
+            value={formObject.homePhone}
             />
           </Col>
           <Col>
@@ -304,7 +328,7 @@ export function LeadDetail(props) {
             name="altPhone" 
             placeholder="Alt Phone" 
             onChange={handleInputChange}
-            value={props.altPhone}
+            value={formObject.altPhone}
             />
           </Col>
         </Form.Row>
@@ -313,14 +337,14 @@ export function LeadDetail(props) {
             <Form.Control 
             name="otherPhone1" placeholder="Other Phone" 
             onChange={handleInputChange}
-            value={props.otherPhone1}
+            value={formObject.otherPhone1}
             />
           </Col>
           <Col>
             <Form.Control 
             name="otherPhone2" placeholder="Other Phone" 
             onChange={handleInputChange}
-            value={props.otherPhone2}
+            value={formObject.otherPhone2}
             />
           </Col>
         </Form.Row>
@@ -329,7 +353,7 @@ export function LeadDetail(props) {
             <Form.Control 
             name="address" placeholder="Address" 
             onChange={handleInputChange}
-            value={props.address}
+            value={formObject.address}
             />
           </Col>
           <Col>
@@ -337,7 +361,7 @@ export function LeadDetail(props) {
             name="city" 
             placeholder="City"
             onChange={handleInputChange}
-            value={props.city}
+            value={formObject.city}
              />
           </Col>
         </Form.Row>
@@ -347,7 +371,7 @@ export function LeadDetail(props) {
             name="state" 
             placeholder="State" 
             onChange={handleInputChange}
-            value={props.state}
+            value={formObject.state}
             />
           </Col>
           <Col>
@@ -355,7 +379,7 @@ export function LeadDetail(props) {
             name="zip" 
             placeholder="Zip"
             onChange={handleInputChange}
-            value={props.zip}
+            value={formObject.zip}
             />
           </Col>
         </Form.Row>

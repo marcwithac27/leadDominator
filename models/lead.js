@@ -29,56 +29,139 @@ const leadSchema = new Schema({
     },
     meta: {
         addressInfo: {
-            address: String,
-            city: String,
-            state: String,
-            zip: String,
-            source: String,
+            address: {
+                type: String,
+                default: "",
+            },
+            city: {
+                type: String,
+                default: "",
+            },
+            state: {
+                type: String,
+                default: "",
+            },
+            zip: {
+                type: String,
+                default: "",
+            },
+            source: {
+                type: String,
+                default: "",
+            },
         },
         resortInfo: {
             deeded: {
                 type: Number,
-                max: 1
+                max: 1,
+                default: ""
             },
             banked: {
                 type: Number,
-                max: 1
+                max: 1,
+                default: ""
             },
             additional: {
                 type: Number,
-                max: 1
+                max: 1,
+                default: ""
             },
-            exchange: String,
+            exchange: {
+                type: String,
+                default: "",
+            },
             bedrooms: {
                 type: Number,
-                max: 1
+                max: 1,
+                default: ""
             },
             bathrooms: {
                 type: Number,
-                max: 1
+                max: 1,
+                default: ""
             },
-            weekType: String,
-            wkPts: String,
-            unit: String,
-            usage: String,
-            ownership: String,
-            rentalPrice: Number,
+            weekType: {
+                type: String,
+                default: "",
+            },
+            wkPts: {
+                type: String,
+                default: "",
+            },
+            unit: {
+                type: String,
+                default: "",
+            },
+            usage: {
+                type: String,
+                default: "",
+            },
+            ownership: {
+                type: String,
+                default: "",
+            },
+            rentalPrice: {
+                type: Number,
+                default: "",
+            }
         },
         billing: {
-            nameOnAccount: String,
-            billingAddress: String,
-            billingCity: String,
-            billingState: String,
-            billingZip: String,
-            cardNumber: String,
-            expMonth: String,
-            expYear: String,
-            cvv: String,
-            bankName: String,
-            checkNumber: Number,
-            routingNumber: String,
-            bankAccountNumber: String,
-            adAmount: String
+            nameOnAccount: {
+                type: String,
+                default: "",
+            },
+            billingAddress: {
+                type: String,
+                default: "",
+            },
+            billingCity: {
+                type: String,
+                default: "",
+            },
+            billingState: {
+                type: String,
+                default: "",
+            },
+            billingZip: {
+                type: String,
+                default: "",
+            },
+            cardNumber: {
+                type: String,
+                default: "",
+            },
+            expMonth: {
+                type: String,
+                default: "",
+            },
+            expYear: {
+                type: String,
+                default: "",
+            },
+            cvv: {
+                type: String,
+                default: "",
+            },
+            bankName: {
+                type: String,
+                default: "",
+            },
+            checkNumber: {
+                type: Number,
+                default: "",
+            },
+            routingNumber: {
+                type: String,
+                default: "",
+            },
+            bankAccountNumber: {
+                type: String,
+                default: "",
+            },
+            adAmount: {
+                type: Number,
+                default: "",
+            }
         }
     },
 });

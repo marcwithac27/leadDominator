@@ -1,8 +1,9 @@
-import React, {useState} from "react"
-import { Button, Modal} from "react-bootstrap"
-import {BillingInfo,Status,ResortInfo,LeadDetail,AddLead} from '../Form'
+import React, { useState } from "react"
+import { Button, Modal } from "react-bootstrap"
+import { BillingInfo, Status, ResortInfo, LeadDetail, AddLead } from '../Form'
 
-export function DetailModal() {
+export function DetailModal({ selectedLead }) {
+  console.log('selectedLead', selectedLead)
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -17,13 +18,10 @@ export function DetailModal() {
         <Modal.Header closeButton>
           <Modal.Title>Lead Details</Modal.Title>
         </Modal.Header>
-  <Modal.Body><LeadDetail/></Modal.Body>
+        <Modal.Body><LeadDetail selectedLead={selectedLead} /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
-          </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
           </Button>
         </Modal.Footer>
       </Modal>
@@ -31,7 +29,7 @@ export function DetailModal() {
   );
 }
 
-export function ResortModal(){
+export function ResortModal({selectedLead}) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -46,7 +44,7 @@ export function ResortModal(){
         <Modal.Header closeButton>
           <Modal.Title>ResortDetail</Modal.Title>
         </Modal.Header>
-  <Modal.Body><ResortInfo/></Modal.Body>
+        <Modal.Body><ResortInfo selectedLead={selectedLead}/></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -62,7 +60,7 @@ export function ResortModal(){
 
 export function BillingModal() {
   const [show, setShow] = useState(false);
-  
+
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   return (
@@ -74,11 +72,11 @@ export function BillingModal() {
       <Modal size="lg"
         show={show}
         // onHide={() => setShow(false)}
-        show={show} onHide={handleClose}>
+        onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title id="example-modal-sizes-title-lg">Billing Detail</Modal.Title>
         </Modal.Header>
-  <Modal.Body><BillingInfo/></Modal.Body>
+        <Modal.Body><BillingInfo /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -92,7 +90,7 @@ export function BillingModal() {
   );
 }
 
-export function StatusModal(){
+export function StatusModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -107,7 +105,7 @@ export function StatusModal(){
         <Modal.Header closeButton>
           <Modal.Title>Add Status</Modal.Title>
         </Modal.Header>
-  <Modal.Body><Status/></Modal.Body>
+        <Modal.Body><Status /></Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
@@ -121,7 +119,7 @@ export function StatusModal(){
   );
 }
 
-export function AddLeadModal(){
+export function AddLeadModal() {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -136,9 +134,9 @@ export function AddLeadModal(){
         <Modal.Header closeButton>
           <Modal.Title>Lead Details</Modal.Title>
         </Modal.Header>
-          <Modal.Body>
-            <AddLead/>
-          </Modal.Body>
+        <Modal.Body>
+          <AddLead />
+        </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close

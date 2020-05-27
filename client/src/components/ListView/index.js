@@ -9,15 +9,11 @@ import { FormControl, InputGroup, Table, Container } from "react-bootstrap"
 
 
 const ListView = () => {
-  // const [lead, setLead] = useState([])
   const [leads, setLeads] = useState([])
   const [columns, setColumns] = useState([])
-  const [selectedLead, setSelectedLead] = useState({})
-  // const [inputObj, setInputObj] = useState("") 
+  const [selectedLead, setSelectedLead] = useState(null)
   // const [filteredLeads, setFilteredLeads] = useState([...leads])
-  // const [selectedLead, setSelectedLead] = useState()
-  //const [sortKey, setSortKey] = useState('')
-
+  // const [sortKey, setSortKey] = useState('')
   // const handleSort = (fieldToSortBy) => {
   //     const sortedArray = leads.sort((itema, itemb) => {
   //        return itema[fieldToSortBy] - itemb[fieldToSortBy]
@@ -54,20 +50,11 @@ const ListView = () => {
   //   .catch(err => console.log(err));
   // }
 
-  // const handleSelect = (event) => {
-  //   const {value} = event.target;
-  //   setSelectedLead({...selectedLead, value})
-  // }
 
   // const handleIC = (event) => {
   //   const {value} = event.target;
   //   setFilteredLeads({...filtered, value})
   // }
-
-  // create handler to pass into TableBody
-  // This should have the id of the lead
-  // leads.find where lead.id === id
-  // this part of state (selectedLead) will be passed into the modal
 
 
   //  const found = []
@@ -82,16 +69,10 @@ const ListView = () => {
 
 
   const handleSelectLead = (id) => {
-    API.getLead(id)
-    .then(res => {
-      console.log("Lead?", res.data, selectedLead)
-      setSelectedLead(res.data)
-    })
+    const found = leads.find(lead => lead._id === id)
+    setSelectedLead(found)
     
-    
-    // setState of which was clicked,
-    // pull that whole lead object from your leads state
-    // feed that lead object into your modals
+   
    
   } 
 
@@ -121,10 +102,18 @@ const ListView = () => {
 
       </Table>
       <AddLeadModal />
-      <BillingModal />
-      <StatusModal />
-      <DetailModal />
-      <ResortModal />
+      {
+        selectedLead &&
+        <>
+          <p>actions for: {selectedLead.tableData.firstName +" "+ selectedLead.tableData.lastName}</p>
+          <button onClick={() => setSelectedLead(null)}>X</button>
+          <BillingModal selectedLead={selectedLead}/>
+          <StatusModal selectedLead={selectedLead}/>
+          <DetailModal selectedLead={selectedLead} />
+          <ResortModal selectedLead={selectedLead}/>
+        </>
+      }
+      
 
     </Container>
 
