@@ -16,9 +16,9 @@ const leadSchema = new Schema({
         lastName: { type: String, required: true },
         resortName: String,
         homePhone: { type: String, required: true, unique: true, max: 10 },
-        altPhone: { type: String, unique: true, default: null, max: 10 },
-        otherPhone1: { type: String, unique: true,  max: 10 },
-        otherPhone2: { type: String, unique: true, max: 10 },
+        altPhone: { type: String, unique: true, default: "", max: 10 },
+        otherPhone1: { type: String, unique: true,  default: "", max: 10 },
+        otherPhone2: { type: String, unique: true, default: "", max: 10 },
         source: String,
         email: {
             type: String,

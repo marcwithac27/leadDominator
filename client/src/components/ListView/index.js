@@ -32,7 +32,7 @@ const ListView = () => {
   const loadLeads = () => {
     API.getLeads()
       .then(res => {
-        console.log(res.data)
+        
         setLeads(res.data)
         setColumns(Object.keys(res.data[0].tableData))
 
@@ -82,12 +82,16 @@ const ListView = () => {
 
 
   const handleSelectLead = (id) => {
-    console.log(id, 'was clicked',selectedLead)
-      return(selectedLead)
+    API.getLead(id)
+    .then(res => {
+      console.log("Lead?", res.data, selectedLead)
+      setSelectedLead(res.data)
+    })
+    
     
     // setState of which was clicked,
     // pull that whole lead object from your leads state
-    // feed that lead object into your billing modal
+    // feed that lead object into your modals
    
   } 
 
@@ -116,7 +120,7 @@ const ListView = () => {
         <TableBody leads={leads} columns={columns} handleSelectLead={handleSelectLead} ></TableBody>
 
       </Table>
-      <AddLeadModal lead={()=>setSelectedLead}/>
+      <AddLeadModal />
       <BillingModal />
       <StatusModal />
       <DetailModal />

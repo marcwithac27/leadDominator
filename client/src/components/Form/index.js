@@ -217,64 +217,150 @@ export function BillingInfo() {
   );
 }
 
-export function LeadDetail() {
-  // const [formObject, setFormObject] = useState({})
-  // const handleInputChange = (event) => {
-  //   const { name, value } = event.target;
-  //   setFormObject({...formObject, [name]: value})
-  // };
+export function LeadDetail(props) {
+  const [formObject, setFormObject] = useState({})
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormObject({ ...formObject, [name]: value })
+  };
+  const handleFormSubmit = (event) => {
+
+    event.preventDefault();
+    if (formObject.lastName && formObject.resortName && formObject.homePhone) {
+      API.updateLead({
+        tableData: {
+          firstName: formObject.firstName,
+          lastName: formObject.lastName,
+          homePhone: formObject.homePhone,
+          altPhone: formObject.altPhone,
+          email: formObject.email,
+          resortName: formObject.resortName
+
+        },
+        meta: {
+          addressInfo: {
+            address: formObject.address,
+            city: formObject.city,
+            state: formObject.state,
+            zip: formObject.zip
+          }
+
+        },
+      })
+
+        .catch(err => console.log(err));
+    }
+  };
+  console.log(formObject)
   return (
-    <Form>
+    <Form onSubmit={handleFormSubmit}>
       <Form.Group controlId="exampleForm.ControlInput1">
         <Form.Row>
           <Col>
-            <Form.Control name="firstName" placeholder="First name" />
+            <Form.Control 
+            name="firstName" 
+            placeholder="First name"
+            onChange={handleInputChange}
+            value={props.firstName}
+            />
           </Col>
           <Col>
-            <Form.Control name="lastName" placeholder="Last name" />
-          </Col>
-        </Form.Row>
-        <Form.Row>
-          <Col>
-            <Form.Control name="email" placeholder="Email" />
-          </Col>
-          <Col>
-            <Form.Control name="resortName" placeholder="Resort Name" />
-          </Col>
-        </Form.Row>
-        <Form.Row>
-          <Col>
-            <Form.Control name="homePhone" placeholder="Home Phone" />
-          </Col>
-          <Col>
-            <Form.Control name="altPhone" placeholder="Alt Phone" />
+            <Form.Control 
+            name="lastName" 
+            placeholder="Last name" 
+            onChange={handleInputChange}
+            value={props.lastName}
+            />
           </Col>
         </Form.Row>
         <Form.Row>
           <Col>
-            <Form.Control name="otherPhone1" placeholder="Other Phone" />
+            <Form.Control 
+            name="email"
+            placeholder="Email" 
+            onChange={handleInputChange}
+            value={props.email}
+            />
           </Col>
           <Col>
-            <Form.Control name="otherPhone2" placeholder="Other Phone" />
+            <Form.Control 
+            name="resortName" placeholder="Resort Name" 
+            onChange={handleInputChange}
+            value={props.resortName}
+            />
           </Col>
         </Form.Row>
         <Form.Row>
           <Col>
-            <Form.Control name="address" placeholder="Address" />
+            <Form.Control 
+            name="homePhone" 
+            placeholder="Home Phone" 
+            onChange={handleInputChange}
+            value={props.homePhone}
+            />
           </Col>
           <Col>
-            <Form.Control name="city" placeholder="City" />
+            <Form.Control 
+            name="altPhone" 
+            placeholder="Alt Phone" 
+            onChange={handleInputChange}
+            value={props.altPhone}
+            />
           </Col>
         </Form.Row>
         <Form.Row>
           <Col>
-            <Form.Control name="state" placeholder="State" />
+            <Form.Control 
+            name="otherPhone1" placeholder="Other Phone" 
+            onChange={handleInputChange}
+            value={props.otherPhone1}
+            />
           </Col>
           <Col>
-            <Form.Control name="zip" placeholder="Zip" />
+            <Form.Control 
+            name="otherPhone2" placeholder="Other Phone" 
+            onChange={handleInputChange}
+            value={props.otherPhone2}
+            />
+          </Col>
+        </Form.Row>
+        <Form.Row>
+          <Col>
+            <Form.Control 
+            name="address" placeholder="Address" 
+            onChange={handleInputChange}
+            value={props.address}
+            />
+          </Col>
+          <Col>
+            <Form.Control 
+            name="city" 
+            placeholder="City"
+            onChange={handleInputChange}
+            value={props.city}
+             />
+          </Col>
+        </Form.Row>
+        <Form.Row>
+          <Col>
+            <Form.Control 
+            name="state" 
+            placeholder="State" 
+            onChange={handleInputChange}
+            value={props.state}
+            />
+          </Col>
+          <Col>
+            <Form.Control 
+            name="zip" 
+            placeholder="Zip"
+            onChange={handleInputChange}
+            value={props.zip}
+            />
           </Col>
         </Form.Row>
       </Form.Group>
+      <Button type="submit" >Save</Button>
     </Form>
   );
 }
@@ -286,19 +372,21 @@ export function AddLead() {
     setFormObject({ ...formObject, [name]: value })
   };
   const handleFormSubmit = (event) => {
-      
+
     event.preventDefault();
     if (formObject.lastName && formObject.resortName && formObject.homePhone) {
-      API.saveLead({tableData:{
-        firstName: formObject.firstName,
-        lastName: formObject.lastName,
-        homePhone: formObject.homePhone,
-        altPhone: formObject.altPhone,
-        email: formObject.email,
-        resortName: formObject.resortName
-        
-      }})
-        
+      API.saveLead({
+        tableData: {
+          firstName: formObject.firstName,
+          lastName: formObject.lastName,
+          homePhone: formObject.homePhone,
+          altPhone: formObject.altPhone,
+          email: formObject.email,
+          resortName: formObject.resortName
+
+        }
+      })
+
         .catch(err => console.log(err));
     }
   };

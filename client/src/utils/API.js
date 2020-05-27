@@ -18,6 +18,9 @@ export default {
   },
   // Saves a book to the database
   saveLead: function(leadData) {
-    return axios.post("/api/leads", leadData);
-  }
+    return axios.post("/api/leads/", leadData);
+  },
+  updateLead: function(id){
+    return axios.put("/api/lead/" + id)
+  },
 };
