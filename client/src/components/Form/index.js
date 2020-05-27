@@ -52,7 +52,10 @@ export function ResortInfo() {
         </Col>
         <Col>
           <Form.Label>Banked</Form.Label>
-          <Form.Control as="select">
+          <Form.Control 
+          as="select"
+          name="banked"
+          >
             <option>0</option>
             <option>1</option>
             <option>2</option>
@@ -249,7 +252,7 @@ export function LeadDetail({selectedLead}) {
   };
   const handleFormSubmit = (event) => {
     event.preventDefault();
-    if (formObject.lastName && formObject.resortName && formObject.homePhone) {
+    if (formObject.address && formObject.city && formObject.state && formObject.zip) {
       API.updateLead({
         tableData: {
           firstName: formObject.firstName,
