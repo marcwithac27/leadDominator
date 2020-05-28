@@ -5,22 +5,28 @@ export default {
   getLeads: function() {
     return axios.get("/api/leads");
   },
-  // Gets the book with the given id
+  // Gets the lead with the given id
   searchLeads: function(query) {
     return axios.get("/api/leads/" + query);
   },
   getLead: function(id) {
     return axios.get("/api/leads/" + id);
   },
-  // Deletes the book with the given id
+  // Deletes the lead with the given id
   deleteLead: function(id) {
     return axios.delete("/api/leads/" + id);
   },
-  // Saves a book to the database
+  // Saves a lead to the database
   saveLead: function(leadData) {
     return axios.post("/api/leads/", leadData);
   },
   updateLead: function(id){
     return axios.put("/api/lead/" + id)
   },
+  createUser: function(userData){
+		return axios.post("/api/user/post", userData);
+	},
+	getUser: function(userData){
+		return axios.post("/api/user/get", userData);
+	},
 };
