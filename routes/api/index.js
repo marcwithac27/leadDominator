@@ -4,6 +4,6 @@ const userRoutes = require("./user")
 
 // lead routes
 router.use("/leads", leadRoutes);
-router.user("/user", userRoutes)
+router.use("/user", userRoutes)
 
 module.exports = router;
