@@ -1,13 +1,14 @@
 import React from 'react';
 import ListView from "../src/components/ListView"
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
-// 
+import {UserProvider} from "../src/utils/UserContext"
 import Signup from "../src/pages/Signup"
 import Login from "../src/pages/Login"
 
 
 function App() {
   return (
+	  <UserProvider>
     <Router>
 		  <div>
 			
@@ -22,6 +23,7 @@ function App() {
 			
 		  </div>
 	  </Router>
+	  </UserProvider>
   );
 }
 
