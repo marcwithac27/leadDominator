@@ -2,7 +2,8 @@ const router = require("express").Router();
 const leadsController = require("../../controllers/leadsController");
 
 // Matches with "/api/books"
-router.route("/")
+router
+  .route("/")
   .get(leadsController.findAll)
   .post(leadsController.create);
 

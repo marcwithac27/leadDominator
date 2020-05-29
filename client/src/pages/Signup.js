@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Form, Container, Button, Alert, Col, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
+import { checkPropTypes } from 'prop-types';
 
 
 const Signup = () => {
@@ -21,11 +22,23 @@ const Signup = () => {
         if (form.checkValidity() === false) {
             event.preventDefault();
             event.stopPropagation();
+            if (formObject.password !== formObject.confirmPassword){
+                setLoginStatus({UserFail: false, PasswordFail: true})
+                return;
+            }
           API.createUser({
               firstName: formObject.firstName,
               lastName: formObject.lastName,
               userName: formObject.userName,
               password: formObject.password,
+              email: formObject.email
+          }).then(res => {
+              if(res.data.status === "Success"){
+                //   ({userName: res.data.userName, _id: res.data._id})
+                  checkPropTypes.history.push("/")
+              }else{
+                  setLoginStatus({UserFail: true, PasswordFail: false})
+              }
           })
 
         }
@@ -108,22 +121,16 @@ const Signup = () => {
                     <Form.Group as={Col} md="4" controlId="validationCustom05">
                         <Form.Label>Confirm Password</Form.Label>
                         <Form.Control 
-                        type="text"
+                        type="password"
+                        name="confirmPassword"
                         onChange={handleInputChange} 
-                        placeholder="Zip" 
+                        placeholder="Confirm Password" 
                         required />
                         <Form.Control.Feedback type="invalid">
-                            Please provide a valid zip.
+                            Password does not Match
           </Form.Control.Feedback>
                     </Form.Group>
                 </Form.Row>
-                <Form.Group>
-                    <Form.Check
-                        required
-                        label="Agree to terms and conditions"
-                        feedback="You must agree before submitting."
-                    />
-                </Form.Group>
                 <Button type="submit">Submit form</Button>
             </Form>
             <div>
@@ -142,8 +149,6 @@ const Signup = () => {
 					</Alert>
 				}
 			</div>
-
-			<Link to="/">Return</Link>
 			<div>
 				Already have an account? 
 				<Link to="/login">Login</Link>
