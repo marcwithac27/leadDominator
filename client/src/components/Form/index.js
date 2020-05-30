@@ -392,7 +392,7 @@ export function LeadDetail({selectedLead}) {
   );
 }
 
-export function AddLead() {
+export function AddLead(props) {
   const [formObject, setFormObject] = useState({})
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -413,8 +413,10 @@ export function AddLead() {
 
         }
       })
-
-        .catch(err => console.log(err));
+      .then(() => {
+        props.loadLeads()
+      })
+      .catch(err => console.log(err));
     }
   };
   console.log(formObject)

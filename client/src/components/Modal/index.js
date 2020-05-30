@@ -119,7 +119,7 @@ export function StatusModal() {
   );
 }
 
-export function AddLeadModal() {
+export function AddLeadModal(props) {
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -135,7 +135,7 @@ export function AddLeadModal() {
           <Modal.Title>Lead Details</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <AddLead />
+          <AddLead loadLeads={props.loadLeads} />
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>

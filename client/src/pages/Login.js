@@ -15,14 +15,12 @@ const Login = (props) => {
     if (formObject.userName && formObject.password) {
       API.getUser({
         userName: formObject.userName,
-        password: formObject.password
+        password: formObject.password,
       })
-        .then((res) => {
-          if (res.data.status === "Success") {
-            console.log(res.data)
-          } else {
-            setLogin({ failure: true });
-          }
+        .then(res => {
+          props.history.push("/")
+        }).catch(e => {
+          setLogin({failure: false})
         })
     }
   }
@@ -68,7 +66,6 @@ const Login = (props) => {
             </Alert>
         }
       </>
-      <Link to="/">Return</Link>
       <>
         Don't have an account?
 				<Link to="/signup"> Sign up</Link>

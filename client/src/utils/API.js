@@ -24,9 +24,9 @@ export default {
     return axios.put("/api/lead/" + id)
   },
   createUser: function(userData){
-		return axios.post("/api/user/post", userData);
+		return axios.post("/api/user/", userData);
 	},
 	getUser: function(userData){
-		return axios.post("/api/user/get", userData);
+		return axios.post("/api/user/login", userData);
 	},
 };

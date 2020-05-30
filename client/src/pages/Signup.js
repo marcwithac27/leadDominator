@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { Form, Container, Button, Alert, Col, InputGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import API from "../utils/API";
-import { checkPropTypes } from 'prop-types';
 
 
-const Signup = () => {
+const Signup = (props) => {
     const [loginStatus, setLoginStatus] = useState({
         UserFail: false,
         PasswordFail: false
@@ -19,27 +18,27 @@ const Signup = () => {
 
     const handleFormSubmit = (event) => {
         const form = event.currentTarget;
-        if (form.checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-            if (formObject.password !== formObject.confirmPassword){
-                setLoginStatus({UserFail: false, PasswordFail: true})
+        event.preventDefault();
+        console.log('submit', form.checkValidity())
+        if (form.checkValidity() === true) {
+
+            if (formObject.password !== formObject.confirmPassword) {
+                setLoginStatus({ UserFail: false, PasswordFail: true })
                 return;
             }
-          API.createUser({
-              firstName: formObject.firstName,
-              lastName: formObject.lastName,
-              userName: formObject.userName,
-              password: formObject.password,
-              email: formObject.email
-          }).then(res => {
-              if(res.data.status === "Success"){
+            console.log('formObj', formObject)
+            API.createUser({
+                firstName: formObject.firstName,
+                lastName: formObject.lastName,
+                userName: formObject.userName,
+                password: formObject.password,
+                email: formObject.email
+            }).then(res => {
                 //   ({userName: res.data.userName, _id: res.data._id})
-                  checkPropTypes.history.push("/")
-              }else{
-                  setLoginStatus({UserFail: true, PasswordFail: false})
-              }
-          })
+                props.history.push("/")
+            }).catch(e => {
+                setLoginStatus({ UserFail: false, PasswordFail: false })
+            })
 
         }
         setValidated(true);
@@ -96,36 +95,36 @@ const Signup = () => {
                 <Form.Row>
                     <Form.Group as={Col} md="4" controlId="validationCustomEmail">
                         <Form.Label>Email</Form.Label>
-                        <Form.Control 
-                        type="email"
-                        name="email" 
-                        placeholder="Email" 
-                        onChange={handleInputChange}
-                        required />
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            placeholder="Email"
+                            onChange={handleInputChange}
+                            required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid email.
           </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationCustomPassword">
                         <Form.Label>Passord</Form.Label>
-                        <Form.Control 
-                        type="password"
-                        name="password" 
-                        placeholder="Password"
-                        onChange={handleInputChange}
-                        required />
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            placeholder="Password"
+                            onChange={handleInputChange}
+                            required />
                         <Form.Control.Feedback type="invalid">
                             Please provide a valid password.
           </Form.Control.Feedback>
                     </Form.Group>
                     <Form.Group as={Col} md="4" controlId="validationCustom05">
                         <Form.Label>Confirm Password</Form.Label>
-                        <Form.Control 
-                        type="password"
-                        name="confirmPassword"
-                        onChange={handleInputChange} 
-                        placeholder="Confirm Password" 
-                        required />
+                        <Form.Control
+                            type="password"
+                            name="confirmPassword"
+                            onChange={handleInputChange}
+                            placeholder="Confirm Password"
+                            required />
                         <Form.Control.Feedback type="invalid">
                             Password does not Match
           </Form.Control.Feedback>
@@ -134,26 +133,26 @@ const Signup = () => {
                 <Button type="submit">Submit form</Button>
             </Form>
             <div>
-				{
-					loginStatus.UserFail &&
-					<Alert variant="danger">
-						Username already taken
+                {
+                    loginStatus.UserFail &&
+                    <Alert variant="danger">
+                        Username already taken
 					</Alert>
-				}
-			</div>
-			<div>
-				{
-					loginStatus.PasswordFail &&
-					<Alert variant="danger">
-						Password fields do not match
+                }
+            </div>
+            <div>
+                {
+                    loginStatus.PasswordFail &&
+                    <Alert variant="danger">
+                        Password fields do not match
 					</Alert>
-				}
-			</div>
-			<div>
-				Already have an account? 
+                }
+            </div>
+            <div>
+                Already have an account?
 				<Link to="/login">Login</Link>
-			</div>
-          
+            </div>
+
         </Container>
     );
 }

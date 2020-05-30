@@ -101,7 +101,7 @@ const ListView = () => {
         <TableBody leads={leads} columns={columns} handleSelectLead={handleSelectLead} ></TableBody>
 
       </Table>
-      <AddLeadModal />
+      <AddLeadModal loadLeads={loadLeads} />
       {
         selectedLead &&
         <>
