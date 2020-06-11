@@ -86,8 +86,10 @@ module.exports = {
       .catch(err => next(err));
   },
   update: function (req, res, next) {
+    console.log( "this is the id", req.params.id)
+    console.log("This is the Req Body", req.body)
     Lead
-      .findOneAndUpdate({ _id: req.params.id }, req.body)
+      .findOneAndUpdate({ _id: req.params.id }, req.body,{new: true})
       .then(dbModel => res.json(dbModel))
       .catch(err => next(err));
   },

@@ -39,7 +39,7 @@ app.use(cors({origin:true,credentials: true}));
 app.use(routes);
 app.use(cookieParser());
 app.use(helmet());
-app.use(myMiddleware({whitelist: ['/login', '/signup'] }))
+app.use(myMiddleware({whitelist: ['/login', '/signup', '/detail'] }))
 app.use(compression());
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/leads");

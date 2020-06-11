@@ -253,7 +253,7 @@ export function LeadDetail({selectedLead}) {
   const handleFormSubmit = (event) => {
     event.preventDefault();
     if (formObject.address && formObject.city && formObject.state && formObject.zip) {
-      API.updateLead({
+      API.updateLead(selectedLead._id,{
         tableData: {
           firstName: formObject.firstName,
           lastName: formObject.lastName,
