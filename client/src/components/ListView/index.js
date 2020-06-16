@@ -4,14 +4,17 @@ import TableHead from "../TableHead/index"
 import API from "../../utils/API"
 import { BillingModal, DetailModal, ResortModal, StatusModal, AddLeadModal } from "../Modal"
 import { FormControl, InputGroup, Table, Container } from "react-bootstrap"
+import useCompData from '../../utils/CompData/useCompData'
+import { PromiseProvider } from "mongoose";
 // import PO from "../Popover"
 
 
 
-const ListView = () => {
+const ListView = (props) => {
   const [leads, setLeads] = useState([])
   const [columns, setColumns] = useState([])
   const [selectedLead, setSelectedLead] = useState(null)
+  const {setData} = useCompData('LeadDetail');
   // const [filteredLeads, setFilteredLeads] = useState([...leads])
   // const [sortKey, setSortKey] = useState('')
   // const handleSort = (fieldToSortBy) => {
@@ -70,10 +73,9 @@ const ListView = () => {
 
   const handleSelectLead = (id) => {
     const found = leads.find(lead => lead._id === id)
-    setSelectedLead(found)
-    
-   
-   
+    // setSelectedLead(found)
+    setData({selectedLead: found});
+    props.history.push('/detail');
   } 
 
   return (
